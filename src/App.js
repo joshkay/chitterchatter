@@ -3,8 +3,6 @@ import * as firebase from 'firebase';
 
 import RoomList from './components/RoomList';
 
-import './App.css';
-
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyCy3WjeZdoiPJVCIGGVO2R4mOvSDBsSFwE",
@@ -16,10 +14,16 @@ var config = {
 };
 firebase.initializeApp(config);
 
-class App extends Component {
-  render() {
+class App extends Component 
+{
+  render() 
+  {
     return (
-      <RoomList firebase={firebase} />
+      <div className="container-fluid fill-height">
+        <div className="row fill-height">
+          <RoomList firebase={firebase} />
+        </div>
+      </div>
     );
   }
 }

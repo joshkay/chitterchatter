@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+
+import './RoomList.css';
 
 class RoomList extends Component
 {
@@ -18,6 +20,7 @@ class RoomList extends Component
     this.roomsRef.on('child_added', (snapshot) => {
       const room = snapshot.val();
       room.key = snapshot.key;
+      
       this.setState({
         rooms: [...this.state.rooms, room]
       });
@@ -27,16 +30,19 @@ class RoomList extends Component
   render()
   {
     return (
-      <section className="room-list">
+      <section className="col-12 col-sm-5 col-md-3 fill-height room-list">
+        <h1><b>Bloc Chat</b></h1>
+        <ul>
         {
           this.state.rooms.map((room, index) => {
             return (
-              <div key={index}>
+              <li key={index}>
                 {room.name}
-              </div>
+              </li>
             );
           })
         }
+        </ul>
       </section>
     );
   }
