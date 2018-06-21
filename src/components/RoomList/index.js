@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import NewRoomButton from '../NewRoomButton';
+import NewRoomModal from '../NewRoomModal';
+
 import './RoomList.css';
 
 class RoomList extends Component
@@ -31,7 +34,12 @@ class RoomList extends Component
   {
     return (
       <section className="col-12 col-sm-5 col-md-3 fill-height room-list">
-        <h1><b>Bloc Chat</b></h1>
+        <div className="row chat-rooms-heading">
+          <h1 className="col-8"><b>Bloc Chat</b></h1>
+          <span className="col-4">
+            <NewRoomButton  />
+          </span>
+        </div>
         <ul>
         {
           this.state.rooms.map((room, index) => {
@@ -43,6 +51,7 @@ class RoomList extends Component
           })
         }
         </ul>
+        <NewRoomModal />
       </section>
     );
   }
