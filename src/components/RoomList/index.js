@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
-import NewRoomButton from '../NewRoomButton';
-import NewRoomModal from '../NewRoomModal';
+import { Grid, Header } from 'semantic-ui-react';
+
+import NewRoom from '../NewRoom';
 
 import './RoomList.css';
 
@@ -33,13 +34,17 @@ class RoomList extends Component
   render()
   {
     return (
-      <section className="col-12 col-sm-5 col-md-3 fill-height room-list">
-        <div className="row chat-rooms-heading">
-          <h1 className="col-8"><b>Bloc Chat</b></h1>
-          <span className="col-4">
-            <NewRoomButton  />
-          </span>
-        </div>
+      <section className="room-list">
+        <Grid>
+          <Grid.Column verticalAlign="middle" width={8}>
+            <Header as='h1'>
+              Bloc Chat
+            </Header>
+          </Grid.Column>
+          <Grid.Column verticalAlign="middle" width={8}>
+            <NewRoom  />
+          </Grid.Column>
+        </Grid>
         <ul>
         {
           this.state.rooms.map((room, index) => {
@@ -51,7 +56,6 @@ class RoomList extends Component
           })
         }
         </ul>
-        <NewRoomModal />
       </section>
     );
   }

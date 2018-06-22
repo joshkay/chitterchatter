@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
 
+import { Grid, Sidebar } from 'semantic-ui-react';
+
 import RoomList from './components/RoomList';
 
 // Initialize Firebase
@@ -19,11 +21,9 @@ class App extends Component
   render() 
   {
     return (
-      <div className="container-fluid fill-height">
-        <div className="row fill-height">
-          <RoomList firebase={firebase} />
-        </div>
-      </div>
+      <Sidebar visible width="wide" direction="left">
+        <RoomList firebase={firebase} />
+      </Sidebar>
     );
   }
 }
