@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
 
-import { Grid, Sidebar } from 'semantic-ui-react';
+import { Sidebar } from 'semantic-ui-react';
 
 import RoomList from './components/RoomList';
 

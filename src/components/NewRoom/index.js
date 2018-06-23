@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Grid, Modal, Form, Button } from 'semantic-ui-react';
+import { Modal, Form, Button } from 'semantic-ui-react';
 
 class NewRoom extends Component 
 {
@@ -9,45 +9,70 @@ class NewRoom extends Component
     super(props);
 
     this.state = {
-      value: ''
+      newRoomName: '',
+      modalOpen: false
     };
+  }
+
+  handleOpen()
+  {
+    this.setState({
+      modalOpen: true
+    });
+  }
+
+  handleClose()
+  {
+    this.setState({
+      modalOpen: false,
+      newRoomName: ''
+    });
   }
 
   handleChange(e)
   {
     this.setState({
-      value: e.target.value
+      newRoomName: e.target.value
     });
   }
 
   handleSubmit(e)
   {
-
+    console.log(this.state);
+    var newRoomName = this.state.newRoomName;
+    if (newRoomName.length > 0)
+    {
+      this.props.createRoom(newRoomName);
+      this.handleClose();
+    }
   }
 
   render()
   {
     var newRoomButton = (
-      <Button color="blue">New Room</Button>
+      <Button color="blue" onClick={() => this.handleOpen()}>New Room</Button>
     );
 
     return (
-      <Modal size="tiny" trigger={newRoomButton}>
+      <Modal open={this.state.modalOpen} onClose={() => this.handleClose()} trigger={newRoomButton}
+        size="tiny" dimmer='blurring' closeIcon>
         <Modal.Header>Create New Room</Modal.Header>
         <Modal.Content>
-          <Form onSubmit={e => this.handleSubmit(e)}>
+          <Form id="newRoomForm" onSubmit={e => this.handleSubmit(e)}>
             <Form.Field>
               <label>Room Name</label>
-              <input type="text" value={this.state.value} onChange={e => this.handleChange(e)} 
-                placeholder='Room Name' 
+              <input type="text" value={this.state.newRoomName} onChange={e => this.handleChange(e)} 
+                placeholder="Room Name" 
               />
             </Form.Field>
-            <div>
-              <Button type='submit' color="blue">Create</Button>
-              <Button type='cancel' negative>Cancel</Button>
-            </div>
           </Form>
         </Modal.Content>
+        <Modal.Actions>
+          <Button type="button" negative onClick={() => this.handleClose()}>
+            Cancel
+          </Button>
+          <Button type="submit" form="newRoomForm" positive icon="checkmark" labelPosition="right" content="Create" />
+        </Modal.Actions>
       </Modal>
     );
   }

@@ -31,6 +31,14 @@ class RoomList extends Component
     });
   }
 
+  createRoom(newRoomName)
+  {
+    console.log(newRoomName);
+    this.roomsRef.push({
+      name: newRoomName
+    });
+  }
+
   render()
   {
     return (
@@ -42,7 +50,7 @@ class RoomList extends Component
             </Header>
           </Grid.Column>
           <Grid.Column verticalAlign="middle" width={8}>
-            <NewRoom  />
+            <NewRoom createRoom={(name) => this.createRoom(name)} />
           </Grid.Column>
         </Grid>
         <ul>
