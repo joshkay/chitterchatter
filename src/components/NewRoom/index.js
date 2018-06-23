@@ -38,7 +38,6 @@ class NewRoom extends Component
 
   handleSubmit(e)
   {
-    console.log(this.state);
     var newRoomName = this.state.newRoomName;
     if (newRoomName.length > 0)
     {
