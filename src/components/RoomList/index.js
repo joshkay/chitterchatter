@@ -33,7 +33,6 @@ class RoomList extends Component
 
   createRoom(newRoomName)
   {
-    console.log(newRoomName);
     this.roomsRef.push({
       name: newRoomName
     });
