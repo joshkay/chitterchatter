@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+import { Grid, Header } from 'semantic-ui-react';
+
+import NewRoom from '../NewRoom';
+
 import './RoomList.css';
 
 class RoomList extends Component
@@ -27,11 +31,27 @@ class RoomList extends Component
     });
   }
 
+  createRoom(newRoomName)
+  {
+    this.roomsRef.push({
+      name: newRoomName
+    });
+  }
+
   render()
   {
     return (
-      <section className="col-12 col-sm-5 col-md-3 fill-height room-list">
-        <h1><b>Bloc Chat</b></h1>
+      <section className="room-list">
+        <Grid>
+          <Grid.Column verticalAlign="middle" width={8}>
+            <Header as='h1'>
+              Bloc Chat
+            </Header>
+          </Grid.Column>
+          <Grid.Column verticalAlign="middle" width={8}>
+            <NewRoom createRoom={(name) => this.createRoom(name)} />
+          </Grid.Column>
+        </Grid>
         <ul>
         {
           this.state.rooms.map((room, index) => {
