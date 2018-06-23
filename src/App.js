@@ -4,6 +4,7 @@ import * as firebase from 'firebase';
 import { Sidebar } from 'semantic-ui-react';
 
 import RoomList from './components/RoomList';
+import MessageList from './components/MessageList';
 
 // Initialize Firebase
 var config = {
@@ -18,12 +19,34 @@ firebase.initializeApp(config);
 
 class App extends Component 
 {
-  render() 
+  constructor(props)
+  {
+    super(props);
+
+    this.state = {
+      activeRoom: ''
+    };
+  }
+
+  setActiveRoom(activeRoom)
+  {
+    this.setState({
+      activeRoom: activeRoom
+    });
+  }
+
+  render()
   {
     return (
-      <Sidebar visible width="wide" direction="left">
-        <RoomList firebase={firebase} />
-      </Sidebar>
+      <div>
+        <Sidebar visible width="wide" direction="left">
+          <RoomList firebase={firebase} activeRoom={this.state.activeRoom}
+            setActiveRoom={(activeRoom) => this.setActiveRoom(activeRoom)} />
+        </Sidebar>
+        <Sidebar.Pusher>
+          <MessageList firebase={firebase} activeRoom={this.state.activeRoom} />
+        </Sidebar.Pusher>
+      </div>
     );
   }
 }
