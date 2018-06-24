@@ -1,28 +1,5 @@
 .room-list {
   height: 100%;
   background-color: #DEDEDE;
-  background-size: cover;
   padding: 30px;
-}
-
-.room-list h1 {
-  color: #464847;
-}
-
-.room-list ul {
-  padding: 2px;
-  list-style: none;
-}
-.room-list li {
-  color: #7f7f7f;
-  font-size: 18px;
-  padding-bottom: 10px;
-  
-}
-
-.chat-rooms-heading {
-  padding-bottom: 10px;
-}
-.chat-rooms-heading button {
-  margin-top: 10px;
 }

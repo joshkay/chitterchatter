@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
 
-import { Sidebar } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 
 import RoomList from './components/RoomList';
 import MessageList from './components/MessageList';
@@ -38,15 +38,15 @@ class App extends Component
   render()
   {
     return (
-      <div>
-        <Sidebar visible width="wide" direction="left">
-          <RoomList firebase={firebase} activeRoom={this.state.activeRoom}
+      <Grid padded className="fill-height">
+        <Grid.Column width={3}>
+        <RoomList firebase={firebase} activeRoom={this.state.activeRoom}
             setActiveRoom={(activeRoom) => this.setActiveRoom(activeRoom)} />
-        </Sidebar>
-        <Sidebar.Pusher>
+        </Grid.Column>
+        <Grid.Column width={13}>
           <MessageList firebase={firebase} activeRoom={this.state.activeRoom} />
-        </Sidebar.Pusher>
-      </div>
+        </Grid.Column>
+      </Grid>
     );
   }
 }
