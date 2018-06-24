@@ -5,6 +5,7 @@ import { Grid } from 'semantic-ui-react';
 
 import RoomList from './components/RoomList';
 import MessageList from './components/MessageList';
+import User from './components/User';
 
 // Initialize Firebase
 var config = {
@@ -40,10 +41,11 @@ class App extends Component
     return (
       <Grid padded className="fill-height">
         <Grid.Column width={3}>
-        <RoomList firebase={firebase} activeRoom={this.state.activeRoom}
-            setActiveRoom={(activeRoom) => this.setActiveRoom(activeRoom)} />
+          <RoomList firebase={firebase} activeRoom={this.state.activeRoom}
+              setActiveRoom={(activeRoom) => this.setActiveRoom(activeRoom)} />
         </Grid.Column>
         <Grid.Column width={13}>
+          <User />
           <MessageList firebase={firebase} activeRoom={this.state.activeRoom} />
         </Grid.Column>
       </Grid>
