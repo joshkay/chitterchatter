@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Container, Grid, Header, List } from 'semantic-ui-react';
+import { Grid, Header, List } from 'semantic-ui-react';
 
 import './MessageList.css';
 
