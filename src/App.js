@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
 
-import { Sidebar } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 
 import RoomList from './components/RoomList';
+import MessageList from './components/MessageList';
 
 // Initialize Firebase
 var config = {
@@ -18,12 +19,34 @@ firebase.initializeApp(config);
 
 class App extends Component 
 {
-  render() 
+  constructor(props)
+  {
+    super(props);
+
+    this.state = {
+      activeRoom: ''
+    };
+  }
+
+  setActiveRoom(activeRoom)
+  {
+    this.setState({
+      activeRoom: activeRoom
+    });
+  }
+
+  render()
   {
     return (
-      <Sidebar visible width="wide" direction="left">
-        <RoomList firebase={firebase} />
-      </Sidebar>
+      <Grid padded className="fill-height">
+        <Grid.Column width={3}>
+        <RoomList firebase={firebase} activeRoom={this.state.activeRoom}
+            setActiveRoom={(activeRoom) => this.setActiveRoom(activeRoom)} />
+        </Grid.Column>
+        <Grid.Column width={13}>
+          <MessageList firebase={firebase} activeRoom={this.state.activeRoom} />
+        </Grid.Column>
+      </Grid>
     );
   }
 }

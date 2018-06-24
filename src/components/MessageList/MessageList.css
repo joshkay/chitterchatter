@@ -1,0 +1,33 @@
+.message-list {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.message-content {
+  font-size: 15px;
+}
+.message-user {
+  font-weight: 700;
+  font-size: 16px;
+}
+.message-time {
+  color: rgba(0, 0, 0, 0.553);  
+  font-size: 13px;
+}
+
+.message-row, .message-list h2 {
+  padding-left: 30px !important;
+  padding-right: 30px !important;
+}
+
+.message-row:first-child {
+  padding-top: .42857143em !important;
+}
+.message-row:last-child {
+  padding-bottom: .42857143em !important;
+}
+.message-row:nth-child(even) {
+  background-color: #F6F7FB;
+}
+.message-row:nth-child(odd) {
+  
+}

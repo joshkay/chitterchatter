@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Grid, Header } from 'semantic-ui-react';
+import { Grid, Header, List } from 'semantic-ui-react';
 
 import NewRoom from '../NewRoom';
 
@@ -38,6 +38,11 @@ class RoomList extends Component
     });
   }
 
+  selectRoom(room)
+  { 
+    this.props.setActiveRoom(room);
+  }
+
   render()
   {
     return (
@@ -48,21 +53,25 @@ class RoomList extends Component
               Bloc Chat
             </Header>
           </Grid.Column>
-          <Grid.Column verticalAlign="middle" width={8}>
+          <Grid.Column verticalAlign="middle" width={8} textAlign="right">
             <NewRoom createRoom={(name) => this.createRoom(name)} />
           </Grid.Column>
         </Grid>
-        <ul>
+        <List selection size="large">
         {
           this.state.rooms.map((room, index) => {
+            var active = room.key === this.props.activeRoom.key;
             return (
-              <li key={index}>
-                {room.name}
-              </li>
+              <List.Item active={active} key={index}
+                onClick={() => this.selectRoom(room)}>
+                <List.Content>
+                  {room.name}
+                </List.Content>
+              </List.Item>
             );
           })
         }
-        </ul>
+        </List>
       </section>
     );
   }
