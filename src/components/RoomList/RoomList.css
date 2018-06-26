@@ -1,5 +1,25 @@
-.room-list {
+.room-list-container {
   height: 100%;
   background-color: #DEDEDE;
-  padding: 30px;
+  padding: 10px;
+  display: flex;
+  flex-flow: column;
+}
+
+.room-list-header {
+  padding: 10px 5px 10px 5px !important;
+  display: flex;
+  flex: 0 1 auto;
+}
+
+.room-list {
+  padding-top: 10px;
+  padding: 5px;
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.room-list .list {
+  width: 100%;
+  overflow-y: auto;
 }
