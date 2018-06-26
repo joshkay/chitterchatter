@@ -36,11 +36,23 @@ class RoomList extends Component
     this.roomsRef.push({
       name: newRoomName
     });
+
+    this.props.setActiveRoom(newRoomName);
   }
 
   selectRoom(room)
   { 
     this.props.setActiveRoom(room);
+  }
+
+  getActiveRoomKey()
+  {
+    if (this.props.activeRoom == null)
+    {
+      return null;
+    }
+
+    return this.props.activeRoom.key;
   }
 
   render()
@@ -60,7 +72,7 @@ class RoomList extends Component
         <List selection size="large">
         {
           this.state.rooms.map((room, index) => {
-            var active = room.key === this.props.activeRoom.key;
+            var active = room.key === this.getActiveRoomKey();
             return (
               <List.Item active={active} key={index}
                 onClick={() => this.selectRoom(room)}>

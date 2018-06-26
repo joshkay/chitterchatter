@@ -1,3 +1,8 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 .message-list {
   padding-top: 30px;
   padding-bottom: 30px;
@@ -30,4 +35,18 @@
 }
 .message-row:nth-child(odd) {
   
+}
+
+.message-send {
+  padding: 5px;
+}
+.message-send .input {
+  width: 100%;
+}
+
+.fixed-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-import { Grid, Header, List } from 'semantic-ui-react';
+import { Header, List, Input } from 'semantic-ui-react';
+
+import Message from '../Message'
 
 import './MessageList.css';
 
@@ -11,7 +13,8 @@ class MessageList extends Component
     super(props);
 
     this.state = {
-      messages: []
+      messages: [],
+      currentMessage: ''
     };
   }
 
@@ -19,8 +22,13 @@ class MessageList extends Component
   {
     this.setState({
       messages: []
-    })
+    });
 
+    if (activeRoom == null)
+    {
+      return;
+    }
+    
     if (this.messagesRef != null)
     {
       this.messagesRef.off();
@@ -31,73 +39,112 @@ class MessageList extends Component
     this.messagesRef.on('child_added', (snapshot) => {
       const message = snapshot.val();
       message.key = snapshot.key;
+
+      message.sentAt = new Date(message.sentAt);
+
+      var messages = [...this.state.messages, message];
+      messages.sort((message1, message2) => {
+        return message1.sentAt - message2.sentAt;
+      });
       
       this.setState({
-        messages: [...this.state.messages, message]
+        messages: messages
       });
     });
   }
 
   componentWillReceiveProps(nextProps)
   {
-    if (nextProps.activeRoom.key !== this.props.activeRoom.key)
+    if (nextProps.activeRoom == null && this.props.activeRoom == null)
     {
-      this.updateMessages(nextProps.activeRoom);
+      return;
     }
+
+    if (nextProps.activeRoom == null && this.props.activeRoom != null)
+    {
+      this.updateMessages(null);
+    }
+    else if ((this.props.activeRoom == null && nextProps.activeRoom != null) ||
+            (nextProps.activeRoom.key !== this.props.activeRoom.key))
+    {
+      this.updateMessages(nextProps.activeRoom)
+    }
+  }
+
+  handleChange(e)
+  {
+    this.setState({
+      currentMessage: e.target.value
+    });
   }
 
   componentDidMount()
   {
     this.updateMessages(this.props.activeRoom);
   }
-  
-  selectMessage(message)
-  {
 
+  getRoomName()
+  {
+    if (this.props.activeRoom == null)
+    {
+      return '';
+    }
+    
+    return this.props.activeRoom.name;
   }
 
-  formatDate(date)
+  handleSubmit(e)
   {
-    var options = {  
-      hour: "2-digit", minute: "2-digit"  
-    };
-    
-    return date.toLocaleTimeString("en-us", options);
+    e.preventDefault();
+
+    if (this.state.currentMessage === '')
+    {
+      return;
+    }
+
+    this.messagesRef.push({
+      content: this.state.currentMessage,
+      sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
+      username: this.props.user.displayName
+    });
+
+    this.setState({
+      currentMessage: ''
+    });
   }
   
   render()
   {
-    return (
+    var roomSelected = (
       <section className="message-list">
         <Header as='h2'>
-          {this.props.activeRoom.name}
+          {this.getRoomName()}
         </Header>
         <List relaxed size="large">
           {
             this.state.messages.map((message, index) => {
               return (
-                <List.Item className="message-row" key={index} onClick={() => this.selectMessage(message)}>
-                  <List.Content>
-                    <Grid padded>
-                      <Grid.Column width={13} className="message-content">
-                        <List.Header className="message-user">
-                          {message.username}
-                        </List.Header>
-                        {message.content}
-                      </Grid.Column>
-                      <Grid.Column width={3} textAlign="right" verticalAlign="top" className="message-time">
-                        {this.formatDate(new Date(message.sentAt))}
-                      </Grid.Column>
-                    </Grid>
-                  </List.Content>
-                </List.Item>
+                <Message key={index} message={message} />
               );
             })
           }
-          </List>
+        </List>
+        <form className="message-send fixed-footer" onSubmit={e => this.handleSubmit(e)}>
+          <Input action={{color: 'blue', content: 'Send', type: 'submit'}}
+            size="large" placeholder='Write your mesasge here...'
+            onChange={(e) => this.handleChange(e)} value={this.state.currentMessage} />
+        </form>
       </section>
     );
+
+    var noRoomSelected = (
+      <div></div>
+    );
+
+    return (
+      this.props.activeRoom == null ? noRoomSelected : roomSelected
+    );
   }
-}
+};
 
 export default MessageList;

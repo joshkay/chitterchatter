@@ -26,7 +26,7 @@ class App extends Component
 
     this.state = {
       user: null,
-      activeRoom: ''
+      activeRoom: null
     };
   }
 
@@ -54,7 +54,7 @@ class App extends Component
         </Grid.Column>
         <Grid.Column width={13}>
           <User firebase={firebase} user={this.state.user} setUser={(user) => this.setUser(user)} />
-          <MessageList firebase={firebase} activeRoom={this.state.activeRoom} />
+          <MessageList firebase={firebase} user={this.state.user} activeRoom={this.state.activeRoom} />
         </Grid.Column>
       </Grid>
     );
