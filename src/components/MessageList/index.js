@@ -116,20 +116,22 @@ class MessageList extends Component
   render()
   {
     var roomSelected = (
-      <section className="message-list">
-        <Header as='h2'>
+      <section className="message-list-container">
+        <Header as='h2' className="message-list-header">
           {this.getRoomName()}
         </Header>
-        <List relaxed size="large">
-          {
-            this.state.messages.map((message, index) => {
-              return (
-                <Message key={index} message={message} />
-              );
-            })
-          }
-        </List>
-        <form className="message-send fixed-footer" onSubmit={e => this.handleSubmit(e)}>
+        <div className="message-list">
+          <List relaxed size="large">
+            {
+              this.state.messages.map((message, index) => {
+                return (
+                  <Message key={index} message={message} />
+                );
+              })
+            }
+          </List>
+        </div>
+        <form className="message-send" onSubmit={e => this.handleSubmit(e)}>
           <Input action={{color: 'blue', content: 'Send', type: 'submit'}}
             size="large" placeholder='Write your message here...'
             onChange={(e) => this.handleChange(e)} value={this.state.currentMessage} />

@@ -3,10 +3,28 @@ html {
   min-height: 100%;
 }
 
-.message-list {
-  padding-top: 30px;
-  padding-bottom: 30px;
+.message-list-container {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  padding-top: 10px;
 }
+.message-list-header {
+  padding: 0px 20px 0px 20px !important;
+}
+.message-list {
+  height: 100%;
+  display: flex;
+  flex: 1;
+  overflow-y: auto;
+}
+.message-list .list {
+  width: 100%;
+}
+.message-send {
+  width: 100%;
+}
+
 .message-content {
   font-size: 15px;
 }
@@ -44,9 +62,9 @@ html {
   width: 100%;
 }
 
-.fixed-footer {
+/* .fixed-footer {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-}
+} */
