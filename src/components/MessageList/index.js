@@ -105,7 +105,7 @@ class MessageList extends Component
     this.messagesRef.push({
       content: this.state.currentMessage,
       sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
-      username: this.props.user.displayName
+      username: this.props.getUserName()
     });
 
     this.setState({
@@ -131,7 +131,7 @@ class MessageList extends Component
         </List>
         <form className="message-send fixed-footer" onSubmit={e => this.handleSubmit(e)}>
           <Input action={{color: 'blue', content: 'Send', type: 'submit'}}
-            size="large" placeholder='Write your mesasge here...'
+            size="large" placeholder='Write your message here...'
             onChange={(e) => this.handleChange(e)} value={this.state.currentMessage} />
         </form>
       </section>

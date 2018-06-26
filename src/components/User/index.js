@@ -64,22 +64,12 @@ class User extends Component
     );
   }
 
-  getUserName()
-  {
-    if (this.props.user == null)
-    {
-      return "Guest";
-    }
-
-    return this.props.user.displayName;
-  }
-
   render()
   {
     var loadedUserMenu = (
       <Menu pointing secondary>
         <div className="user-name">
-            {this.getUserName()}
+            {this.props.getUserName()}
         </div>
         <Menu.Menu position="right">
           <Menu.Item size="tiny">
