@@ -11,3 +11,8 @@ body {
   padding: 0;
   /* font-family: 'Open Sans', sans-serif !important; */
 }
+
+.fill-height .panel {
+  display: flex !important;
+  flex-direction: column;
+}

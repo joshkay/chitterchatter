@@ -1,7 +1,31 @@
-.message-list {
-  padding-top: 30px;
-  padding-bottom: 30px;
+html {
+  position: relative;
+  min-height: 100%;
 }
+
+.message-list-container {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  flex: 0 1 auto;
+  padding-top: 10px;
+}
+.message-list-header {
+  padding: 0px 20px 0px 20px !important;
+}
+.message-list {
+  height: 100%;
+  display: flex;
+  flex: 1;
+  overflow-y: auto;
+}
+.message-list .list {
+  width: 100%;
+}
+.message-send {
+  width: 100%;
+}
+
 .message-content {
   font-size: 15px;
 }
@@ -30,4 +54,11 @@
 }
 .message-row:nth-child(odd) {
   
+}
+
+.message-send {
+  padding: 5px;
+}
+.message-send .input {
+  width: 100%;
 }

@@ -44,6 +44,8 @@ class NewRoom extends Component
       this.props.createRoom(newRoomName);
       this.handleClose();
     }
+
+    e.preventDefault();
   }
 
   render()

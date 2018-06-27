@@ -1,3 +1,7 @@
+.user-menu {
+  
+}
+
 .user-name {
   width: 100%;
   display: flex;
@@ -13,4 +17,8 @@
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
+}
+
+.log-in-container {
+  align-self: center !important;
 }

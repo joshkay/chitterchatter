@@ -36,6 +36,8 @@ class RoomList extends Component
     this.roomsRef.push({
       name: newRoomName
     });
+
+    this.props.setActiveRoom(newRoomName);
   }
 
   selectRoom(room)
@@ -43,11 +45,21 @@ class RoomList extends Component
     this.props.setActiveRoom(room);
   }
 
+  getActiveRoomKey()
+  {
+    if (this.props.activeRoom == null)
+    {
+      return null;
+    }
+
+    return this.props.activeRoom.key;
+  }
+
   render()
   {
     return (
-      <section className="room-list">
-        <Grid>
+      <section className="room-list-container">
+        <Grid padded className="room-list-header">
           <Grid.Column verticalAlign="middle" width={8}>
             <Header as='h1'>
               Bloc Chat
@@ -57,21 +69,23 @@ class RoomList extends Component
             <NewRoom createRoom={(name) => this.createRoom(name)} />
           </Grid.Column>
         </Grid>
-        <List selection size="large">
-        {
-          this.state.rooms.map((room, index) => {
-            var active = room.key === this.props.activeRoom.key;
-            return (
-              <List.Item active={active} key={index}
-                onClick={() => this.selectRoom(room)}>
-                <List.Content>
-                  {room.name}
-                </List.Content>
-              </List.Item>
-            );
-          })
-        }
-        </List>
+        <div className="room-list">
+          <List selection size="large">
+          {
+            this.state.rooms.map((room, index) => {
+              var active = room.key === this.getActiveRoomKey();
+              return (
+                <List.Item active={active} key={index}
+                  onClick={() => this.selectRoom(room)}>
+                  <List.Content>
+                    {room.name}
+                  </List.Content>
+                </List.Item>
+              );
+            })
+          }
+          </List>
+        </div>
       </section>
     );
   }
