@@ -81,7 +81,21 @@ class MessageList extends Component
   componentDidMount()
   {
     this.updateMessages(this.props.activeRoom);
+    this.scrollToBottom();
   }
+
+  componentDidUpdate() 
+  {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom()
+  {
+    if (this.messagesEnd != null)
+    {
+      this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+    }
+  }  
 
   getRoomName()
   {
@@ -129,6 +143,7 @@ class MessageList extends Component
                 );
               })
             }
+            <span ref={(el) => { this.messagesEnd = el; }} />
           </List>
         </div>
         <form className="message-send" onSubmit={e => this.handleSubmit(e)}>
@@ -140,7 +155,8 @@ class MessageList extends Component
     );
 
     var noRoomSelected = (
-      <div></div>
+      <section className="message-list-container">
+      </section>
     );
 
     return (

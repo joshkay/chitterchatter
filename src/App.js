@@ -60,13 +60,13 @@ class App extends Component
   {
     return (
       <Grid padded className="fill-height">
-        <Grid.Column width={3}>
+        <Grid.Column width={3} className="panel">
           <RoomList firebase={firebase} 
             activeRoom={this.state.activeRoom}
             setActiveRoom={(activeRoom) => this.setActiveRoom(activeRoom)} 
           />
         </Grid.Column>
-        <Grid.Column width={13}>
+        <Grid.Column width={13} className="panel">
           <User firebase={firebase} 
             user={this.state.user} 
             setUser={(user) => this.setUser(user)} 

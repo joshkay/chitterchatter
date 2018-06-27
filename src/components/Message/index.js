@@ -11,8 +11,12 @@ class Message extends Component
 
   formatDate(date)
   {
-    var options = {  
-      hour: "2-digit", minute: "2-digit"  
+    var options = { 
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit", 
+      minute: "2-digit"  
     };
     
     return date.toLocaleTimeString("en-us", options);

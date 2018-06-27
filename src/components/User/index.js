@@ -67,12 +67,12 @@ class User extends Component
   render()
   {
     var loadedUserMenu = (
-      <Menu pointing secondary>
+      <Menu pointing secondary className="user-menu">
         <div className="user-name">
             {this.props.getUserName()}
         </div>
         <Menu.Menu position="right">
-          <Menu.Item size="tiny">
+          <Menu.Item size="tiny" className="log-in-container">
             {
               (this.props.user == null) ? this.getSignInButton() : this.getSignOutButton()
             }
@@ -82,7 +82,7 @@ class User extends Component
     );
 
     var loadingUserMenu = (
-      <div></div>
+      <div className="user-menu"></div>
       // <Menu pointing secondary>
       //   <div className="user-loader">
       //     <Loader size="small" active inline="centered" />
