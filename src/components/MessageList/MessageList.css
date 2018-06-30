@@ -8,7 +8,6 @@ html {
   display: flex;
   flex-flow: column;
   flex: 0 1 auto;
-  padding-top: 10px;
 }
 .message-list-header {
   padding: 0px 20px 0px 20px !important;
@@ -24,6 +23,10 @@ html {
 }
 .message-send {
   width: 100%;
+}
+
+.room-settings {
+  align-self: center !important;
 }
 
 .message-content {

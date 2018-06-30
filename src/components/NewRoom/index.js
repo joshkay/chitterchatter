@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Modal, Form, Button } from 'semantic-ui-react';
 
-class NewRoom extends Component 
+class NewRoom extends Component
 {
   constructor(props)
   {
@@ -51,7 +51,9 @@ class NewRoom extends Component
   render()
   {
     var newRoomButton = (
-      <Button color="blue" onClick={() => this.handleOpen()}>New Room</Button>
+      <Button color="blue" onClick={() => this.handleOpen()}>
+        New Room
+      </Button>
     );
 
     return (
@@ -62,7 +64,7 @@ class NewRoom extends Component
           <Form id="newRoomForm" onSubmit={e => this.handleSubmit(e)}>
             <Form.Field>
               <label>Room Name</label>
-              <input type="text" value={this.state.newRoomName} onChange={e => this.handleChange(e)} 
+              <input autoFocus type="text" value={this.state.newRoomName} onChange={e => this.handleChange(e)} 
                 placeholder="Room Name" 
               />
             </Form.Field>
@@ -77,6 +79,6 @@ class NewRoom extends Component
       </Modal>
     );
   }
-};
+}
 
 export default NewRoom;

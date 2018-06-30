@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Menu, Button } from 'semantic-ui-react';
+import { Grid, Button } from 'semantic-ui-react';
 
 import './User.css';
 
@@ -67,18 +67,16 @@ class User extends Component
   render()
   {
     var loadedUserMenu = (
-      <Menu pointing secondary className="user-menu">
-        <div className="user-name">
-            {this.props.getUserName()}
-        </div>
-        <Menu.Menu position="right">
-          <Menu.Item size="tiny" className="log-in-container">
-            {
-              (this.props.user == null) ? this.getSignInButton() : this.getSignOutButton()
-            }
-          </Menu.Item>
-        </Menu.Menu>
-      </Menu>
+      <Grid padded className="user-menu">
+        <Grid.Column verticalAlign="middle" width={8} className="user-name">
+          {this.props.getUserName()}
+        </Grid.Column>
+        <Grid.Column verticalAlign="middle" width={8} textAlign="right">
+          {
+            (this.props.user == null) ? this.getSignInButton() : this.getSignOutButton()
+          }
+        </Grid.Column>
+      </Grid>
     );
 
     var loadingUserMenu = (

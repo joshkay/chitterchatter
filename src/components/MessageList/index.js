@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
-import { Header, List, Input } from 'semantic-ui-react';
+import { Menu, Header, List, Input } from 'semantic-ui-react';
 
-import Message from '../Message'
+import Message from '../Message';
+import ManageRoom from '../ManageRoom';
 
 import './MessageList.css';
 
@@ -131,9 +132,19 @@ class MessageList extends Component
   {
     var roomSelected = (
       <section className="message-list-container">
-        <Header as='h2' className="message-list-header">
-          {this.getRoomName()}
-        </Header>
+        <Menu pointing secondary className="user-menu">
+          <Menu.Item size="tiny">
+            <Header as='h2' className="message-list-header">
+              {this.getRoomName()}
+            </Header>
+          </Menu.Item>
+          <Menu.Menu position="right" className="room-settings">
+            <Menu.Item size="tiny">
+              <ManageRoom />
+            </Menu.Item>
+          </Menu.Menu>
+        </Menu>
+          
         <div className="message-list">
           <List relaxed size="large">
             {
