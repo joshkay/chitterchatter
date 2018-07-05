@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Modal, Form, Button, Icon } from 'semantic-ui-react';
+import { Modal, Button, Icon } from 'semantic-ui-react';
 
 class ManageRoom extends Component 
 {
@@ -10,7 +10,7 @@ class ManageRoom extends Component
 
     this.state = {
       modalOpen: false
-    };
+    }; 
   }
 
   handleOpen()
@@ -29,12 +29,13 @@ class ManageRoom extends Component
 
   deleteRoom(e)
   {
-    var newRoomName = this.state.newRoomName;
-    if (newRoomName.length > 0)
-    {
-      this.props.createRoom(newRoomName);
-      this.handleClose();
-    }
+    this.handleClose();
+
+    this.messagesRef = this.props.firebase.database().ref(`messages/${this.props.activeRoom.key}`);
+    this.messagesRef.remove();
+
+    this.roomsRef = this.props.firebase.database().ref(`rooms/${this.props.activeRoom.key}`);
+    this.roomsRef.remove();
 
     e.preventDefault();
   }
@@ -49,9 +50,14 @@ class ManageRoom extends Component
 
     return (
       <Modal open={this.state.modalOpen} onClose={() => this.handleClose()} trigger={manageRoomButton}
-        size="tiny" dimmer='blurring' closeIcon>
+        size="tiny" closeIcon>
         <Modal.Header>Manage Room</Modal.Header>
-        
+        <Modal.Content>
+          <Button negative icon labelPosition='left' onClick={(e) => this.deleteRoom(e)}>
+            <Icon name='delete' />
+            Delete Room
+          </Button>
+        </Modal.Content>
       </Modal>
     );
   }

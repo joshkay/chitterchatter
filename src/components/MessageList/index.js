@@ -140,7 +140,8 @@ class MessageList extends Component
           </Menu.Item>
           <Menu.Menu position="right" className="room-settings">
             <Menu.Item size="tiny">
-              <ManageRoom />
+              <ManageRoom firebase={this.props.firebase}
+                activeRoom={this.props.activeRoom} />
             </Menu.Item>
           </Menu.Menu>
         </Menu>

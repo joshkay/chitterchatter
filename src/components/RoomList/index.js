@@ -29,6 +29,17 @@ class RoomList extends Component
         rooms: [...this.state.rooms, room]
       });
     });
+
+    this.roomsRef.on('child_removed', (snapshot) => {
+      const room = snapshot.val();
+      room.key = snapshot.key;
+      
+      this.setState({
+        rooms: this.state.rooms.filter((e) => e.key !== room.key)
+      });
+
+      this.props.setActiveRoom(null);
+    });
   }
 
   createRoom(newRoomName)
