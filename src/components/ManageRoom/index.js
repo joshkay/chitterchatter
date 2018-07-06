@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { Modal, Button, Icon } from 'semantic-ui-react';
 
+import ConfirmationModal from './../ConfirmationModal';
+
 class ManageRoom extends Component 
 {
   constructor(props)
@@ -27,7 +29,7 @@ class ManageRoom extends Component
     });
   }
 
-  deleteRoom(e)
+  deleteRoom()
   {
     this.handleClose();
 
@@ -36,8 +38,6 @@ class ManageRoom extends Component
 
     this.roomsRef = this.props.firebase.database().ref(`rooms/${this.props.activeRoom.key}`);
     this.roomsRef.remove();
-
-    e.preventDefault();
   }
 
   render()
@@ -53,10 +53,13 @@ class ManageRoom extends Component
         size="tiny" closeIcon>
         <Modal.Header>Manage Room</Modal.Header>
         <Modal.Content>
-          <Button negative icon labelPosition='left' onClick={(e) => this.deleteRoom(e)}>
-            <Icon name='delete' />
-            Delete Room
-          </Button>
+          <ConfirmationModal
+            header={`Delete ${this.props.activeRoom.name}`}
+            onConfirm={() => this.deleteRoom()}
+            triggerText="Delete Room"
+            triggerIcon="delete"
+            triggerColor="red"
+          />
         </Modal.Content>
       </Modal>
     );
