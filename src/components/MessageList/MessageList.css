@@ -8,10 +8,9 @@ html {
   display: flex;
   flex-flow: column;
   flex: 0 1 auto;
-  padding-top: 10px;
 }
 .message-list-header {
-  padding: 0px 20px 0px 20px !important;
+  /* padding: 0px 20px 0px 20px !important; */
 }
 .message-list {
   height: 100%;
@@ -26,8 +25,13 @@ html {
   width: 100%;
 }
 
+.room-settings {
+  align-self: center !important;
+}
+
 .message-content {
   font-size: 15px;
+  word-wrap: break-word;
 }
 .message-user {
   font-weight: 700;
