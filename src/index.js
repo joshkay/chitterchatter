@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import registerServiceWorker from './registerServiceWorker';
+import App from './App';
+import { initFirebase } from './config/firebase';
 import 'semantic-ui-css/semantic.min.css';
 import './index.css';
 
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+initFirebase();
 
 ReactDOM.render(
-  <App />, 
-  document.getElementById('root')
+  <App />
+  , document.getElementById('root')
 );
 
 registerServiceWorker();

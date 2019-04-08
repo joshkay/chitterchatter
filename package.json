@@ -1,12 +1,15 @@
 {
-  "name": "bloc-chat-react",
+  "name": "chitter-chatter",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "firebase": "^5.9.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-redux": "^6.0.1",
     "react-scripts": "2.1.8",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.81.3"
   },

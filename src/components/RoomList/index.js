@@ -73,7 +73,7 @@ class RoomList extends Component
         <Grid padded className="room-list-header">
           <Grid.Column verticalAlign="middle" width={8}>
             <Header as='h1'>
-              Bloc Chat
+              Chitter Chatter
             </Header>
           </Grid.Column>
           <Grid.Column verticalAlign="middle" width={8} textAlign="right">
